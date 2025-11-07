@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kensei Legend of the Five Rings Toolkit</title>
+
+    <style>
+        /* Reset + base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html, body {
+            height: 100%
+        }
+
+        body {
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #fafafa;
+        }
+
+        body::before {
+            content: "";
+            position: fixed; /* keeps it in place while scrolling */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('Images/double page background 1440p (plus a bit).jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            z-index: -1; /* ensures it’s behind all content */
+        }
+
+        @font-face {
+            font-family: "BrushtipTexe";
+            src: url("Fonts/BrushtipTexe.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        /* HEADER with fully-visible square logo (256px) */
+        header {
+            position: relative;
+            text-align: center;
+            color: #222;
+            /* Ensure header area always big enough to show the 256px logo plus some breathing room */
+            min-height: calc(256px + 3rem);
+            padding: 1.5rem 1rem;
+            overflow: visible;
+            background-color: transparent;
+        }
+        
+        /* logo sits behind the title, always contained (not cropped) */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 1.5rem; /* keep it visually above center so title sits over it nicely */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 256px;
+            height: 256px;
+            background-image: url("Images/Background_256.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain; /* ensures entire square is visible */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        header h1 {
+            position: relative;
+            z-index: 1;
+            margin-top: 0.75rem;
+            font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+            font-weight: 600;
+            font-family: "BrushtipTexe", system-ui, sans-serif;
+            color: #973A3F;
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro {
+            margin-bottom: 2rem;
+            /*text-align: center*/
+        }
+
+        .intro ol {
+            padding-left: 2rem;
+        }
+
+        .outro {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            text-align: center
+        }
+
+        /* CONTENT ROW (image + text) */
+        .content-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .content-row ul {
+            padding-left: 2rem;
+        }
+
+        .content-row figure {
+            margin: 0;
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 256px; /* limit images to 256px */
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-row img {
+            width: 100%;
+            height: auto;
+            max-width: 256px;
+            max-height: 256px;
+            display: block;
+        }
+
+        .content-row article {
+            flex: 1 1 380px;
+            max-width: 600px;
+        }
+
+        .content-row h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            font-family: "BrushtipTexe", system-ui, sans-serif;
+            color: #973A3F;
+        }
+
+        /* Alternation: operate on section elements only (works despite divider divs between sections) */
+        section.content-row:nth-of-type(odd) {
+            flex-direction: row;
+        }
+
+        section.content-row:nth-of-type(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* DIVIDER IMAGES: centered, show at natural size (no upscaling), shrink on small screens */
+        .divider-image {
+            text-align: center;
+            margin: 2.5rem 0;
+        }
+
+        .divider-image img {
+            display: block;
+            margin: 0 auto;
+            width: auto; /* do not force to fill container */
+            max-width: 100%; /* allow shrinking on narrow viewports */
+            height: auto;
+        }
+
+        /* Small-screen adjustments */
+        @media (max-width: 768px) {
+            header {
+                min-height: calc(180px + 2.5rem);
+                padding: 1rem 1rem;
+            }
+
+            header::before {
+                width: 180px;
+                height: 180px;
+                top: 1rem
+            }
+
+            header h1 {
+                font-size: clamp(2rem, 4vw, 3rem);
+            }
+
+            .intro ol {
+                padding-left: 1rem;
+            }
+
+            .content-row {
+                flex-direction: column;
+                text-align: left;
+            }
+
+            .content-row ul {
+                padding-left: 1rem;
+            }
+
+            section.content-row:nth-of-type(even) {
+                flex-direction: column; /* disable row-reverse on narrow screens */
+            }
+
+            .content-row figure,
+            .content-row article {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+
+            .content-row img {
+                max-width: 180px;
+                max-height: 180px
+            }
+
+            .divider-image {
+                margin: 1.5rem 0;
+            }
+
+            .divider-image img {
+                max-width: 100%;
+                height: auto;
+            }
+            /* natural size preserved, shrinks if necessary */
+        }
+
+        /* Minor accessibility / readable spacing */
+        p {
+            margin-top: .5rem
+        }
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Kensei<br />Legend of the Five Rings<br />Toolkit</h1>
+    </header>
+
+    <main>
+        <section class="intro">
+            <p>The Kensei Legend of the Five Rings Toolkit is a set of Windows apps for enhancing your 
+                <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">LCG</a> 
+                and <a href="https://www.edge-studio.net/categories-games/l5r/">RPG</a> games 
+                and <a href="https://www.aconytebooks.com/?worlds=legend-of-the-five-rings">other experiences</a> in the 
+                Legend of the Five Rings setting.</p>
+            <p>To get started:</p>
+            <p>
+                <ol>
+                    <li><a href="https://www.dropbox.com/scl/fo/14pw8fgwrvczgcrwumrxo/AB2tN1KW5lDj48KfuyqISRo?rlkey=eh4wvpnasxgg9elskxt8w2z2h&dl=0">Download</a>
+                        the <strong>setup.exe</strong> and <strong>Kensei Legend of the Five Rings Toolkit.msi</strong>.</li>
+                    <li>Run the <b>setup.exe</b> with the <b>.msi</b> in the same folder.</li>
+                    <li>Explore the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>
+                        to find additional files to use with the toolkit and in your games.</li>
+                </ol>
+            </p>
+            <p>Read on to find out more!</p>
+        </section>
+
+        <section class="content-row">
+            <figure>
+                <img src="Images/Fate_256.png" alt="L5R LCG Deck Builder logo">
+            </figure>
+            <article>
+                <h2>L5R LCG Deck Builder</h2>
+                <p>A deck list builder for the 
+                    <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">Legend of the Five Rings LCG</a>.</p>
+                <p>
+                    <ul>
+                        <li>Create, edit, save, import, and export deck lists for Legend of the Five Rings: The Card Game.</li>
+                        <li>Support for Stronghold Format, Emerald Legacy, Obsidian, and most other widely-used formats.</li>
+                        <li>Auto-filter available cards and validate decks as you go.</li>
+                        <li>Randomly generate a deck, from scratch or partially filled in.</li>
+                        <li>Import decks you’ve previously made in <a href="https://www.emeralddb.org/">EmeraldDB</a>,
+                            export for use in EmeraldDB and from there, online play in <a href="https://jigoku.online/">Jigoku Online</a>.</li>
+                        <li>Sample deck list files available in the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>.</li>
+                       
+                    </ul>
+                </p>
+                <p>Coming soon (...?):</p>
+                <p>
+                    <ul>
+                        <li>Print and/or export to PDF a pretty-looking deck list.</li>
+                        <li>Shadowlands decks.</li>
+                        <li>Filter available cards by your collection.</li>
+                        <li><em>And more...?</em></li>
+                    </ul>
+                </p>
+                <p><em>Many thanks to the <a href="https://www.emeralddb.org/">EmeraldDB</a> team for making available 
+                    the data used as the basis for this tool.</em></p>
+            </article>
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R LCG Deck Builder.png" alt="L5R LCG Deck Builder">
+        </div>
+
+        <section class="content-row">
+            <figure>
+                <img src="Images/TripleFate_256.png" alt="L5R LCG Deck Organizer">
+            </figure>
+            <article>
+                <h2>L5R LCG Deck Organizer</h2>
+                <p>Organise the deck lists you created with the L5R LCG Deck Builder.</p>
+                <p>
+                    <ul>
+                        <li>
+                            Manage all the decks you’ve created with L5R Deck Builder, choosing the folder where you’ll
+                            keep them.
+                        </li>
+                        <li>Create new decks, see a summary, arrange into folders, move them around.</li>
+                        <li>Import all public decks from <a href="https://www.emeralddb.org/">EmeraldDB</a>.</li>
+                        <li>Sample deck list files available in the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>.</li>
+                    </ul>
+                </p>
+                <p>Coming soon (...?):</p>
+                <p>
+                    <ul>
+                        <li>Filter available decks by those that can be played with the cards in your collection.</li>
+                        <li><em>And more...?</em></li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R LCG Deck Organizer.png" alt="L5R LCG Deck Organizer">
+        </div>
+
+        <section class="content-row">
+            <figure>
+                <img src="Images/Honor_256.png" alt="L5R LCG Card Viewer">
+            </figure>
+            <article>
+                <h2>L5R LCG Card Viewer</h2>
+                <p>An at-a-glance database of cards in the Legend of the Five Rings LCG.</p>
+                <p>
+                    <ul>
+                        <li>Filter by format, cycle, pack, faction, deck, and type!</li>
+                        <li>View any card and its stats.</li>
+                    </ul>
+                </p>
+                <p>Coming soon (...?):</p>
+                <p>
+                    <ul>
+                        <li>Print cards for use as proxies.</li>
+                        <li><em>And more...?</em></li>
+                    </ul>
+                </p>
+            </article>
+            
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R LCG Card Viewer.png" alt="L5R LCG Card Viewer">
+        </div>
+
+        <section class="content-row">
+            <figure>
+                <img src="Images/Dice_256.png" alt="L5R RPG Dice">
+            </figure>
+            <article>
+                <h2>L5R RPG Dice</h2>
+                <p>A dice and statistics app for the 
+                    <a href="https://www.edge-studio.net/categories-games/l5r/">Legend of the Five Rings Roleplaying Game</a>.</p>
+                <p>
+                    <ul>
+                        <li>Simple statistics for making skill checks.</li>
+                        <li>Choose your ring, skill, whether strife is acceptable, and whether you have assistance.</li>
+                        <li>Compare the odds if you had more rings or skills - useful for deciding where to spend XP!</li>
+                    </ul>
+                </p>
+                <p>Coming soon (...?):</p>
+                <p>
+                    <ul>
+                        <li>A dice roller, following all the game rules.</li>
+                        <li>More helpful apps for use with the RPG, including a character creator, session tracker, and 
+                            many others!</li>
+                        <li><em>And more...?</em></li>
+                    </ul>
+                </p>
+            </article>
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R RPG Dice.png" alt="L5R RPG Dice">
+        </div>
+
+        <section class="content-row">
+            <figure>
+                <img src="Images/chrysanthemum_256.png" alt="L5R Fiction">
+            </figure>
+            <article>
+                <h2>L5R Fiction</h2>
+                <p>A database of fiction written for the Legend of the Five Rings.</p>
+                <p>
+                    <ul>
+                        <li>View a summary of each story.</li>
+                        <li>For stories available online, links to read in your browser or download.</li>
+                        <li>For stories available for sale, links to the store site.</li>
+                        <li>Filter by publisher, author, and character.</li>
+                        <li>Combine the story summaries for the characters you’re filtering by.</li>
+                    </ul>
+                </p>
+                <p>Coming soon (...?):</p>
+                <p>
+                    <ul>
+                        <li>Improved information about each story.</li>
+                        <li>Add and edit your own story information.</li>
+                        <li>Visual flowchart so you can easily trace reading order.</li>
+                        <li><em>And more...?</em></li>
+                    </ul>
+                </p>
+                <p>
+                    <em>
+                        Many thanks to Kakita Kaori of <a href="https://craneclan.weebly.com/">The Winter Gardens of the
+                            Kakita</a> for making available the data used as the basis for this tool.
+                    </em>
+                </p>
+            </article>
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R Fiction.png" alt="L5R Fiction">
+        </div>
+        
+        <hr/>
+
+        <section class="outro">
+            <p>Bug reports, suggestions or requests? <a href="mailto:bittermanandy@gmail.com">Get in touch to let me know!</a></p>
+            <p>The Kensei Legend of the Five Rings Toolkit contains fan-made material for Legend of the Five Rings.</p>
+            <p>Legend of the Five Rings is a trademark of Asmodee North America. Legends of the Five Rings products are 
+                © 2017–2025 Fantasy Flight Games, EDGE Studio, and Asmodee. No challenge to their rights as intellectual
+                property owners is intended.</p>
+        </section>
+
+    </main>
+
+</body>
+</html>
