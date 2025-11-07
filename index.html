@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Kensei Legend of the Five Rings Toolkit</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <style>
         /* Reset + base */
@@ -24,19 +25,19 @@
             background: #fafafa;
         }
 
-        body::before {
-            content: "";
-            position: fixed; /* keeps it in place while scrolling */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('Images/double page background 1440p (plus a bit).jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            z-index: -1; /* ensures it’s behind all content */
-        }
+            body::before {
+                content: "";
+                position: fixed; /* keeps it in place while scrolling */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('Images/double page background 1440p (plus a bit).jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                z-index: -1; /* ensures it’s behind all content */
+            }
 
         @font-face {
             font-family: "BrushtipTexe";
@@ -55,36 +56,36 @@
             overflow: visible;
             background-color: transparent;
         }
-        
-        /* logo sits behind the title, always contained (not cropped) */
-        header::before {
-            content: "";
-            position: absolute;
-            top: 1.5rem; /* keep it visually above center so title sits over it nicely */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 256px;
-            height: 256px;
-            background-image: url("Images/Background_256.png");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain; /* ensures entire square is visible */
-            z-index: 0;
-            pointer-events: none;
-        }
 
-        header h1 {
-            position: relative;
-            z-index: 1;
-            margin-top: 0.75rem;
-            font-size: clamp(2.5rem, 3.5vw, 3.5rem);
-            font-weight: 600;
-            font-family: "BrushtipTexe", system-ui, sans-serif;
-            color: #973A3F;
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-        }
+            /* logo sits behind the title, always contained (not cropped) */
+            header::before {
+                content: "";
+                position: absolute;
+                top: 1.5rem; /* keep it visually above center so title sits over it nicely */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 256px;
+                height: 256px;
+                background-image: url("Images/Background_256.png");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain; /* ensures entire square is visible */
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            header h1 {
+                position: relative;
+                z-index: 1;
+                margin-top: 0.75rem;
+                font-size: clamp(2.5rem, 3.5vw, 3.5rem);
+                font-weight: 600;
+                font-family: "BrushtipTexe", system-ui, sans-serif;
+                color: #973A3F;
+                display: inline-block;
+                padding: 0.25rem 0.5rem;
+                border-radius: 6px;
+            }
 
         main {
             max-width: 1000px;
@@ -97,9 +98,9 @@
             /*text-align: center*/
         }
 
-        .intro ol {
-            padding-left: 2rem;
-        }
+            .intro ol {
+                padding-left: 2rem;
+            }
 
         .outro {
             margin-top: 2rem;
@@ -117,38 +118,38 @@
             justify-content: center;
         }
 
-        .content-row ul {
-            padding-left: 2rem;
-        }
+            .content-row ul {
+                padding-left: 2rem;
+            }
 
-        .content-row figure {
-            margin: 0;
-            flex: 0 0 auto;
-            width: 100%;
-            max-width: 256px; /* limit images to 256px */
-            display: flex;
-            justify-content: center;
-        }
+            .content-row figure {
+                margin: 0;
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 256px; /* limit images to 256px */
+                display: flex;
+                justify-content: center;
+            }
 
-        .content-row img {
-            width: 100%;
-            height: auto;
-            max-width: 256px;
-            max-height: 256px;
-            display: block;
-        }
+            .content-row img {
+                width: 100%;
+                height: auto;
+                max-width: 256px;
+                max-height: 256px;
+                display: block;
+            }
 
-        .content-row article {
-            flex: 1 1 380px;
-            max-width: 600px;
-        }
+            .content-row article {
+                flex: 1 1 380px;
+                max-width: 600px;
+            }
 
-        .content-row h2 {
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-            font-family: "BrushtipTexe", system-ui, sans-serif;
-            color: #973A3F;
-        }
+            .content-row h2 {
+                margin-bottom: 0.5rem;
+                font-size: 1.5rem;
+                font-family: "BrushtipTexe", system-ui, sans-serif;
+                color: #973A3F;
+            }
 
         /* Alternation: operate on section elements only (works despite divider divs between sections) */
         section.content-row:nth-of-type(odd) {
@@ -165,13 +166,13 @@
             margin: 2.5rem 0;
         }
 
-        .divider-image img {
-            display: block;
-            margin: 0 auto;
-            width: auto; /* do not force to fill container */
-            max-width: 100%; /* allow shrinking on narrow viewports */
-            height: auto;
-        }
+            .divider-image img {
+                display: block;
+                margin: 0 auto;
+                width: auto; /* do not force to fill container */
+                max-width: 100%; /* allow shrinking on narrow viewports */
+                height: auto;
+            }
 
         /* Small-screen adjustments */
         @media (max-width: 768px) {
@@ -180,15 +181,15 @@
                 padding: 1rem 1rem;
             }
 
-            header::before {
-                width: 180px;
-                height: 180px;
-                top: 1rem
-            }
+                header::before {
+                    width: 180px;
+                    height: 180px;
+                    top: 1rem
+                }
 
-            header h1 {
-                font-size: clamp(2rem, 4vw, 3rem);
-            }
+                header h1 {
+                    font-size: clamp(2rem, 4vw, 3rem);
+                }
 
             .intro ol {
                 padding-left: 1rem;
@@ -199,9 +200,9 @@
                 text-align: left;
             }
 
-            .content-row ul {
-                padding-left: 1rem;
-            }
+                .content-row ul {
+                    padding-left: 1rem;
+                }
 
             section.content-row:nth-of-type(even) {
                 flex-direction: column; /* disable row-reverse on narrow screens */
@@ -222,10 +223,10 @@
                 margin: 1.5rem 0;
             }
 
-            .divider-image img {
-                max-width: 100%;
-                height: auto;
-            }
+                .divider-image img {
+                    max-width: 100%;
+                    height: auto;
+                }
             /* natural size preserved, shrinks if necessary */
         }
 
