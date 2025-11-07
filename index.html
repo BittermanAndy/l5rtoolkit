@@ -181,11 +181,6 @@
                 height: auto;
             }
 
-        /* offset scroll target to account for fixed menu height */
-        h2 {
-            scroll-margin-top: 3.5rem; /* adjust based on menu height */
-        }
-
         /* Small-screen adjustments */
         @media (max-width: 768px) {
             header {
@@ -491,33 +486,33 @@
                 </p>
             </article>
         </section>
-    <div class="divider-image">
-        <img src="Images/L5R Fiction.png" alt="L5R Fiction">
-    </div>
+        <div class="divider-image">
+            <img src="Images/L5R Fiction.png" alt="L5R Fiction">
+        </div>
 
-    <hr />
+        <hr />
 
-    <section class="outro">
-        <p>Bug reports, suggestions or requests? <a href="mailto:bittermanandy@gmail.com">Get in touch to let me know!</a></p>
-        <p>The Kensei Legend of the Five Rings Toolkit contains fan-made material for Legend of the Five Rings.</p>
-        <p>
-            Legend of the Five Rings is a trademark of Asmodee North America. Legends of the Five Rings products are
-            © 2017–2025 Fantasy Flight Games, EDGE Studio, and Asmodee. No challenge to their rights as intellectual
-            property owners is intended.
-        </p>
-    </section>
+        <section class="outro">
+            <p>Bug reports, suggestions or requests? <a href="mailto:bittermanandy@gmail.com">Get in touch to let me know!</a></p>
+            <p>The Kensei Legend of the Five Rings Toolkit contains fan-made material for Legend of the Five Rings.</p>
+            <p>
+                Legend of the Five Rings is a trademark of Asmodee North America. Legends of the Five Rings products are
+                © 2017–2025 Fantasy Flight Games, EDGE Studio, and Asmodee. No challenge to their rights as intellectual
+                property owners is intended.
+            </p>
+        </section>
 
-    </main>
+        </main>
 
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => {
             const menu = document.getElementById("scrollMenu");
             const headers = document.querySelectorAll("main h2");
 
-            // Build menu links
+            // Build menu dynamically
             headers.forEach(h2 => {
                 const id = h2.textContent.trim().replace(/\s+/g, "-").toLowerCase();
-                h2.setAttribute("id", id);
+                h2.id = id;
 
                 const link = document.createElement("a");
                 link.href = `#${id}`;
@@ -525,10 +520,10 @@
                 menu.appendChild(link);
             });
 
-            // Show/hide menu on scroll
             const header = document.querySelector("header");
             const triggerPoint = header.offsetTop + header.offsetHeight - 50;
 
+            // Show/hide menu with fade
             window.addEventListener("scroll", () => {
                 if (window.scrollY > triggerPoint) {
                     menu.classList.add("visible");
@@ -536,8 +531,28 @@
                     menu.classList.remove("visible");
                 }
             });
+
+            // Adjust scroll offset dynamically based on menu height
+            function scrollWithOffset(targetId) {
+                const target = document.getElementById(targetId);
+                if (!target) return;
+                const menuHeight = menu.offsetHeight;
+                const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - menuHeight - 10; // small gap below menu
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            }
+
+            // Override default link behavior
+            menu.addEventListener("click", (e) => {
+                if (e.target.tagName.toLowerCase() === "a") {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute("href").substring(1);
+                    scrollWithOffset(targetId);
+                }
+            });
         });
     </script>
+
 
 </body>
 </html>
