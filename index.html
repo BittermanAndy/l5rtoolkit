@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Kensei Legend of the Five Rings Toolkit</title>
-    
+
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -15,6 +15,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         html, body {
@@ -82,7 +86,7 @@
                 z-index: 1;
                 margin-top: 0.75rem;
                 font-size: clamp(2.5rem, 3.5vw, 3.5rem);
-                font-weight: 600;
+                font-weight: 700;
                 font-family: "BrushtipTexe", system-ui, sans-serif;
                 color: #973A3F;
                 display: inline-block;
@@ -177,6 +181,11 @@
                 height: auto;
             }
 
+        /* offset scroll target to account for fixed menu height */
+        h2 {
+            scroll-margin-top: 3.5rem; /* adjust based on menu height */
+        }
+
         /* Small-screen adjustments */
         @media (max-width: 768px) {
             header {
@@ -237,10 +246,47 @@
         p {
             margin-top: .5rem
         }
+
+        /* Floating scroll menu */
+        #scrollMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.95);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            pointer-events: none; /* prevents clicking when hidden */
+            z-index: 1000;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            backdrop-filter: blur(6px);
+            transition: opacity 0.4s ease-in-out;
+        }
+
+            #scrollMenu.visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            #scrollMenu a {
+                margin: 0 0.75rem;
+                color: #973A3F;
+                font-weight: 600;
+                text-decoration: none;
+                font-family: "BrushtipTexe", system-ui, sans-serif;
+            }
+
+                #scrollMenu a:hover {
+                    text-decoration: underline;
+                }
+
     </style>
 
 </head>
 <body>
+
+    <nav id="scrollMenu"></nav>
 
     <header>
         <h1>Kensei<br />Legend of the Five Rings<br />Toolkit</h1>
@@ -248,19 +294,25 @@
 
     <main>
         <section class="intro">
-            <p>The Kensei Legend of the Five Rings Toolkit is a set of Windows apps for enhancing your 
-                <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">LCG</a> 
-                and <a href="https://www.edge-studio.net/categories-games/l5r/">RPG</a> games 
-                and <a href="https://www.aconytebooks.com/?worlds=legend-of-the-five-rings">other experiences</a> in the 
-                Legend of the Five Rings setting.</p>
+            <p>
+                The Kensei Legend of the Five Rings Toolkit is a set of Windows apps for enhancing your
+                <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">LCG</a>
+                and <a href="https://www.edge-studio.net/categories-games/l5r/">RPG</a> games
+                and <a href="https://www.aconytebooks.com/?worlds=legend-of-the-five-rings">other experiences</a> in the
+                Legend of the Five Rings setting.
+            </p>
             <p>To get started:</p>
             <p>
                 <ol>
-                    <li><a href="https://www.dropbox.com/scl/fo/14pw8fgwrvczgcrwumrxo/AB2tN1KW5lDj48KfuyqISRo?rlkey=eh4wvpnasxgg9elskxt8w2z2h&dl=0">Download</a>
-                        the <strong>setup.exe</strong> and <strong>Kensei Legend of the Five Rings Toolkit.msi</strong>.</li>
-                    <li>Run the <b>setup.exe</b> with the <b>.msi</b> in the same folder.</li>
-                    <li>Explore the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>
-                        to find additional files to use with the toolkit and in your games.</li>
+                    <li>
+                        <a href="https://www.dropbox.com/scl/fo/14pw8fgwrvczgcrwumrxo/AB2tN1KW5lDj48KfuyqISRo?rlkey=eh4wvpnasxgg9elskxt8w2z2h&dl=0">Download</a>
+                        the <strong>setup.exe</strong> and <strong>Kensei Legend of the Five Rings Toolkit.msi</strong>.
+                    </li>
+                    <li>Install the software by running the <b>setup.exe</b> with the <b>.msi</b> in the same folder.</li>
+                    <li>
+                        Explore the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>
+                        to find additional files to use with the toolkit and in your games.
+                    </li>
                 </ol>
             </p>
             <p>Read on to find out more!</p>
@@ -272,18 +324,22 @@
             </figure>
             <article>
                 <h2>L5R LCG Deck Builder</h2>
-                <p>A deck list builder for the 
-                    <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">Legend of the Five Rings LCG</a>.</p>
+                <p>
+                    A deck list builder for the
+                    <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">Legend of the Five Rings LCG</a>.
+                </p>
                 <p>
                     <ul>
                         <li>Create, edit, save, import, and export deck lists for Legend of the Five Rings: The Card Game.</li>
                         <li>Support for Stronghold Format, Emerald Legacy, Obsidian, and most other widely-used formats.</li>
                         <li>Auto-filter available cards and validate decks as you go.</li>
                         <li>Randomly generate a deck, from scratch or partially filled in.</li>
-                        <li>Import decks you’ve previously made in <a href="https://www.emeralddb.org/">EmeraldDB</a>,
-                            export for use in EmeraldDB and from there, online play in <a href="https://jigoku.online/">Jigoku Online</a>.</li>
+                        <li>
+                            Import decks you’ve previously made in <a href="https://www.emeralddb.org/">EmeraldDB</a>,
+                            export for use in EmeraldDB and from there, online play in <a href="https://jigoku.online/">Jigoku Online</a>.
+                        </li>
                         <li>Sample deck list files available in the <a href="https://www.dropbox.com/scl/fo/tzt56sozyy26cujp8zcnw/AMLJibDCIhVMX7e3FVKnqfY?rlkey=e1878cqxr24x4gt6a43yinj1m&dl=0">Extras folder</a>.</li>
-                       
+
                     </ul>
                 </p>
                 <p>Coming soon (...?):</p>
@@ -295,8 +351,12 @@
                         <li><em>And more...?</em></li>
                     </ul>
                 </p>
-                <p><em>Many thanks to the <a href="https://www.emeralddb.org/">EmeraldDB</a> team for making available 
-                    the data used as the basis for this tool.</em></p>
+                <p>
+                    <em>
+                        Many thanks to the <a href="https://www.emeralddb.org/">EmeraldDB</a> team for making available
+                        the data used as the basis for this tool.
+                    </em>
+                </p>
             </article>
         </section>
         <div class="divider-image">
@@ -355,7 +415,7 @@
                     </ul>
                 </p>
             </article>
-            
+
         </section>
         <div class="divider-image">
             <img src="Images/L5R LCG Card Viewer.png" alt="L5R LCG Card Viewer">
@@ -367,8 +427,10 @@
             </figure>
             <article>
                 <h2>L5R RPG Dice</h2>
-                <p>A dice and statistics app for the 
-                    <a href="https://www.edge-studio.net/categories-games/l5r/">Legend of the Five Rings Roleplaying Game</a>.</p>
+                <p>
+                    A dice and statistics app for the
+                    <a href="https://www.edge-studio.net/categories-games/l5r/">Legend of the Five Rings Roleplaying Game</a>.
+                </p>
                 <p>
                     <ul>
                         <li>Simple statistics for making skill checks.</li>
@@ -380,8 +442,10 @@
                 <p>
                     <ul>
                         <li>A dice roller, following all the game rules.</li>
-                        <li>More helpful apps for use with the RPG, including a character creator, session tracker, and 
-                            many others!</li>
+                        <li>
+                            More helpful apps for use with the RPG, including a character creator, session tracker, and
+                            many others!
+                        </li>
                         <li><em>And more...?</em></li>
                     </ul>
                 </p>
@@ -418,30 +482,62 @@
                 </p>
                 <p>
                     <em>
-                        Many thanks to Kakita Kaori of <a href="https://craneclan.weebly.com/">The Winter Gardens of the
-                            Kakita</a> for making available the data used as the basis for this tool.
+                        Many thanks to Kakita Kaori of
+                        <a href="https://craneclan.weebly.com/">
+                            The Winter Gardens of the
+                            Kakita
+                        </a> for making available the data used as the basis for this tool.
                     </em>
                 </p>
             </article>
         </section>
-        <div class="divider-image">
-            <img src="Images/L5R Fiction.png" alt="L5R Fiction">
-        </div>
-        
-        <hr/>
+    <div class="divider-image">
+        <img src="Images/L5R Fiction.png" alt="L5R Fiction">
+    </div>
 
-        <section class="outro">
-            <p>Bug reports, suggestions or requests? <a href="mailto:bittermanandy@gmail.com">Get in touch to let me know!</a></p>
-            <p>The Kensei Legend of the Five Rings Toolkit contains fan-made material for Legend of the Five Rings.</p>
-            <p>Legend of the Five Rings is a trademark of Asmodee North America. Legends of the Five Rings products are 
-                © 2017–2025 Fantasy Flight Games, EDGE Studio, and Asmodee. No challenge to their rights as intellectual
-                property owners is intended.</p>
-        </section>
+    <hr />
+
+    <section class="outro">
+        <p>Bug reports, suggestions or requests? <a href="mailto:bittermanandy@gmail.com">Get in touch to let me know!</a></p>
+        <p>The Kensei Legend of the Five Rings Toolkit contains fan-made material for Legend of the Five Rings.</p>
+        <p>
+            Legend of the Five Rings is a trademark of Asmodee North America. Legends of the Five Rings products are
+            © 2017–2025 Fantasy Flight Games, EDGE Studio, and Asmodee. No challenge to their rights as intellectual
+            property owners is intended.
+        </p>
+    </section>
 
     </main>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menu = document.getElementById("scrollMenu");
+            const headers = document.querySelectorAll("main h2");
+
+            // Build menu links
+            headers.forEach(h2 => {
+                const id = h2.textContent.trim().replace(/\s+/g, "-").toLowerCase();
+                h2.setAttribute("id", id);
+
+                const link = document.createElement("a");
+                link.href = `#${id}`;
+                link.textContent = h2.textContent;
+                menu.appendChild(link);
+            });
+
+            // Show/hide menu on scroll
+            const header = document.querySelector("header");
+            const triggerPoint = header.offsetTop + header.offsetHeight - 50;
+
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > triggerPoint) {
+                    menu.classList.add("visible");
+                } else {
+                    menu.classList.remove("visible");
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
-
-
-
