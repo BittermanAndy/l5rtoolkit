@@ -318,7 +318,7 @@
                 <img src="Images/Fate_256.png" alt="L5R LCG Deck Builder logo">
             </figure>
             <article>
-                <h2>L5R LCG Deck Builder</h2>
+                <h2>L5R&nbsp;LCG&nbsp;Deck&nbsp;Builder</h2>
                 <p>
                     A deck list builder for the
                     <a href="https://www.fantasyflightgames.com/en/products/legend-of-the-five-rings-the-card-game/">Legend of the Five Rings LCG</a>.
@@ -363,7 +363,7 @@
                 <img src="Images/TripleFate_256.png" alt="L5R LCG Deck Organizer">
             </figure>
             <article>
-                <h2>L5R LCG Deck Organizer</h2>
+                <h2>L5R&nbsp;LCG&nbsp;Deck&nbsp;Organizer</h2>
                 <p>Organise the deck lists you created with the L5R LCG Deck Builder.</p>
                 <p>
                     <ul>
@@ -394,7 +394,7 @@
                 <img src="Images/Honor_256.png" alt="L5R LCG Card Viewer">
             </figure>
             <article>
-                <h2>L5R LCG Card Viewer</h2>
+                <h2>L5R&nbsp;LCG&nbsp;Card&nbsp;Viewer</h2>
                 <p>An at-a-glance database of cards in the Legend of the Five Rings LCG.</p>
                 <p>
                     <ul>
@@ -410,10 +410,46 @@
                     </ul>
                 </p>
             </article>
-
         </section>
         <div class="divider-image">
             <img src="Images/L5R LCG Card Viewer.png" alt="L5R LCG Card Viewer">
+        </div>
+
+    <section class="content-row">
+        <figure>
+            <img src="Images/Dice2_256.png" alt="L5R RPG GM Screen">
+        </figure>
+        <article>
+            <h2>L5R&nbsp;RPG&nbsp;GM&nbsp;Screen</h2>
+            <p>
+                A Game Master's screen for the
+                <a href="https://www.edge-studio.net/categories-games/l5r/">Legend of the Five Rings Roleplaying Game</a>.
+            </p>
+            <p>
+                <ul>
+                    <li>Quick reference of the player characters in your party.</li>
+                    <li>Easy access to your rulebooks (in PDF and other formats).</li>
+                    <li>A space to make quick notes.</li>
+                    <li>The same dice statistics chart as in the RPG Dice app.</li>
+                </ul>
+            </p>
+            <p>Coming soon (...?):</p>
+            <p>
+                <ul>
+                    <li>Project images onto a second screen to show to the players.</li>
+                    <li>Play music, ambience, and sound effects.</li>
+                    <li>Technique index for all published techniques.</li>
+                    <li>
+                        More helpful apps for use with the RPG, including a character creator, session tracker, and
+                        many others!
+                    </li>
+                    <li><em>And more...?</em></li>
+                </ul>
+            </p>
+        </article>
+        </section>
+        <div class="divider-image">
+            <img src="Images/L5R RPG GM Screen.png" alt="L5R RPG GM Screen">
         </div>
 
         <section class="content-row">
@@ -421,7 +457,7 @@
                 <img src="Images/Dice_256.png" alt="L5R RPG Dice">
             </figure>
             <article>
-                <h2>L5R RPG Dice</h2>
+                <h2>L5R&nbsp;RPG&nbsp;Dice</h2>
                 <p>
                     A dice and statistics app for the
                     <a href="https://www.edge-studio.net/categories-games/l5r/">Legend of the Five Rings Roleplaying Game</a>.
@@ -436,11 +472,7 @@
                 <p>Coming soon (...?):</p>
                 <p>
                     <ul>
-                        <li>A dice roller, following all the game rules.</li>
-                        <li>
-                            More helpful apps for use with the RPG, including a character creator, session tracker, and
-                            many others!
-                        </li>
+                        <li>A check runner, following all the game rules.</li>
                         <li><em>And more...?</em></li>
                     </ul>
                 </p>
@@ -455,7 +487,7 @@
                 <img src="Images/chrysanthemum_256.png" alt="L5R Fiction">
             </figure>
             <article>
-                <h2>L5R Fiction</h2>
+                <h2>L5R&nbsp;Fiction</h2>
                 <p>A database of fiction written for the Legend of the Five Rings.</p>
                 <p>
                     <ul>
@@ -502,7 +534,7 @@
             </p>
         </section>
 
-        </main>
+    </main>
 
         <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -516,7 +548,7 @@
 
                 const link = document.createElement("a");
                 link.href = `#${id}`;
-                link.textContent = h2.textContent;
+                link.textContent = h2.textContent + " "; // Space to ensure line wrapping even with &nbsp; in text
                 menu.appendChild(link);
             });
 
